@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>B-SIDE LABEL Sticker Orders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+[hidden]{display:none!important}
+body{margin:0}
+/* Layout: a sticker shop counter. Cobalt header band with yellow title, candy-colored series tiles,
+   die-cut stickers floating on tinted tiles, hot-pink cart pill. */
+:root{
+  --paper:#fbf7f0; --surface:#ffffff; --ink:#1b1530; --soft:#6b6480; --rule:#ebe3d6;
+  --cobalt:#2f4bff; --cobalt-ink:#ffffff; --pink:#ff4f8b; --pink-ink:#ffffff; --yellow:#ffd23f; --yellow-ink:#2b2100;
+  --mint:#20c597; --orange:#ff8a3d; --violet:#8b5cf6; --sky:#25b4f0;
+  --tile-mix:20%;
+  --shadow:0 1px 0 rgba(27,21,48,.04),0 8px 22px rgba(27,21,48,.08);
+  --f-display:"Dela Gothic One","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:16px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#14111d; --surface:#211c30; --ink:#f4f0fb; --soft:#a79fbe; --rule:#322b46;
+  --cobalt:#4a62ff; --yellow:#ffd23f; --pink:#ff5c95; --tile-mix:28%;
+  --shadow:0 1px 0 rgba(0,0,0,.3),0 10px 26px rgba(0,0,0,.4); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#14111d; --surface:#211c30; --ink:#f4f0fb; --soft:#a79fbe; --rule:#322b46;
+  --cobalt:#4a62ff; --yellow:#ffd23f; --pink:#ff5c95; --tile-mix:28%;
+  --shadow:0 1px 0 rgba(0,0,0,.3),0 10px 26px rgba(0,0,0,.4); color-scheme:dark}
+*{box-sizing:border-box}
+html,body{background:var(--paper)}
+body{color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+a{color:var(--cobalt)}
+
+/* hero band */
+.band{background:var(--cobalt);color:var(--cobalt-ink);position:relative;overflow:hidden;
+  background-image:radial-gradient(rgba(255,255,255,.14) 1.4px,transparent 1.6px);background-size:14px 14px}
+.band-in{max-width:1320px;margin:0 auto;padding-inline:16px;padding-block:26px 22px;display:grid;gap:14px;position:relative}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+h1{font-family:var(--f-display);font-weight:400;font-size:clamp(28px,5.4vw,52px);line-height:1.02;margin:0;color:var(--yellow);text-wrap:balance;letter-spacing:.01em;
+  text-shadow:3px 3px 0 #10208f}
+.lede{margin:0;max-width:60ch;font-size:15px;opacity:.95}
+.steps{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.stp{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.35);border-radius:999px;padding:6px 14px 6px 6px;font-size:13.5px;font-weight:700}
+.stp b{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--yellow);color:var(--yellow-ink);font-family:var(--f-display);font-weight:400;font-size:13px}
+.stamp{position:absolute;right:16px;top:20px;width:112px;height:112px;border-radius:50%;background:var(--pink);color:var(--pink-ink);display:grid;place-items:center;text-align:center;
+  font-family:var(--f-display);font-size:15px;line-height:1.05;transform:rotate(12deg);box-shadow:0 6px 0 rgba(0,0,0,.18);border:3px dashed rgba(255,255,255,.7)}
+.stamp small{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;margin-top:4px}
+@media (max-width:720px){.stamp{display:none}}
+
+/* sticky tools */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:1320px;margin:0 auto;padding-inline:16px;padding-block:10px 8px;display:grid;gap:8px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tools input{flex:1 1 220px;min-width:0;padding:11px 16px;border:2px solid var(--ink);border-radius:999px;background:var(--surface)}
+.tools select{padding:11px 12px;border:2px solid var(--ink);border-radius:999px;background:var(--surface);font-weight:700}
+.rail{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.chip{flex:0 0 auto;display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1.5px solid var(--rule);background:var(--surface);font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.chip i{width:9px;height:9px;border-radius:50%;background:var(--c,var(--ink));flex:none}
+.chip .n{color:var(--soft);font-family:var(--f-mono);font-size:11px;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--c,var(--ink));border-color:var(--c,var(--ink));color:#fff}
+.chip[aria-pressed="true"] i{background:#fff}
+.chip[aria-pressed="true"] .n{color:inherit;opacity:.8}
+
+main{max-width:1320px;margin:0 auto;padding-inline:16px;padding-block:18px 120px}
+.status{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:12.5px;color:var(--soft);margin-bottom:20px}
+.status .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--mint);margin-right:6px;vertical-align:middle;box-shadow:0 0 0 3px color-mix(in srgb,var(--mint) 25%,transparent)}
+
+section.series{margin-bottom:34px;content-visibility:auto;contain-intrinsic-size:auto 640px}
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.tape{font-family:var(--f-display);font-weight:400;font-size:clamp(17px,2.4vw,21px);margin:0;padding:4px 14px 5px;background:var(--c);color:#fff;transform:rotate(-1.2deg);
+  border-radius:3px;box-shadow:2px 2px 0 color-mix(in srgb,var(--c) 45%,#000);text-wrap:balance}
+.sh .cnt{font-family:var(--f-mono);font-size:12px;color:var(--soft)}
+.sh .all{margin-left:auto;background:none;border:2px solid var(--c);color:var(--ink);font-weight:700;font-size:13px;cursor:pointer;padding:5px 12px;border-radius:999px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(164px,1fr));gap:16px}
+@media (max-width:420px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+
+.card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0;position:relative;overflow:hidden}
+.ph{appearance:none;border:none;margin:0;padding:0;cursor:zoom-in;display:block;width:100%;aspect-ratio:1/1;max-width:100%;position:relative;
+  background:color-mix(in srgb,var(--c) var(--tile-mix),var(--surface))}
+.ph .spr{position:absolute;inset:12px;width:auto;height:auto}
+.spr{width:100%;height:100%;background-repeat:no-repeat;transition:transform .18s ease}
+.card:nth-child(odd) .spr{transform:rotate(-1.5deg)} .card:nth-child(even) .spr{transform:rotate(1.2deg)}
+.nophoto{display:grid!important;place-content:center;text-align:center;gap:4px;border:2px dashed color-mix(in srgb,var(--c) 50%,transparent);border-radius:12px;color:var(--ink);font-family:var(--f-display);font-size:15px}
+.nophoto small{font-family:var(--f-body);font-size:11px;color:var(--soft)}
+.ph:hover .spr{transform:rotate(0) scale(1.05)}
+@media (prefers-reduced-motion:reduce){.spr{transition:none}}
+.badge{position:absolute;top:8px;left:8px;z-index:1;font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;padding:3px 8px;border-radius:999px;background:var(--pink);color:var(--pink-ink)}
+.badge.out{background:var(--ink);color:var(--paper)}
+.cb{padding:10px 12px 12px;display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+.ser{font-size:10.5px;letter-spacing:.06em;color:var(--c);font-weight:900;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;filter:saturate(1.1) brightness(.85)}
+:root[data-theme="dark"] .ser{filter:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ser{filter:none}}
+.nm{font-size:13.5px;font-weight:700;line-height:1.32;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:3.96em}
+.jp{font-size:11px;color:var(--soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row{margin-top:auto;padding-top:8px;display:flex;align-items:center;justify-content:space-between;gap:6px}
+.price{font-family:var(--f-mono);font-weight:600;font-size:14px;font-variant-numeric:tabular-nums;background:var(--yellow);color:var(--yellow-ink);padding:2px 8px;border-radius:6px}
+.add{border:none;border-radius:999px;background:var(--ink);color:var(--paper);font-weight:900;font-size:13px;padding:7px 14px;cursor:pointer}
+.add:hover{background:var(--pink);color:var(--pink-ink)}
+.add:disabled{opacity:.35;cursor:not-allowed;background:var(--soft)}
+.qty{display:inline-flex;align-items:center;border:2px solid var(--pink);border-radius:999px;overflow:hidden;background:var(--surface)}
+.qty button{width:28px;height:28px;border:none;background:var(--pink);color:var(--pink-ink);cursor:pointer;font-weight:900}
+.qty span{min-width:26px;text-align:center;font-family:var(--f-mono);font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}
+.more{display:block;margin:18px auto 0;padding:11px 22px;border-radius:999px;border:2px solid var(--ink);background:var(--surface);font-weight:900;cursor:pointer}
+.empty{text-align:center;color:var(--soft);padding:60px 0}
+
+footer.fine{background:var(--ink);color:var(--paper)}
+.fine-in{max-width:1320px;margin:0 auto;padding-inline:16px;padding-block:26px 120px;font-size:12.5px;display:grid;gap:6px}
+.fine-in p{margin:0;max-width:80ch;opacity:.85}
+.fine-in a{color:var(--yellow)}
+
+#cartBtn{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;align-items:center;gap:10px;padding:13px 20px;border:none;border-radius:999px;background:var(--pink);color:var(--pink-ink);font-weight:900;font-size:15px;box-shadow:0 6px 0 color-mix(in srgb,var(--pink) 55%,#000),0 12px 26px rgba(0,0,0,.2);cursor:pointer}
+#cartBtn .c{background:var(--yellow);color:var(--yellow-ink);font-family:var(--f-mono);border-radius:999px;padding:1px 8px;font-size:13px}
+#cartBtn .t{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+
+.overlay{position:fixed;inset:0;z-index:40;background:rgba(15,10,30,.55);display:flex;justify-content:flex-end}
+.panel{width:min(440px,100%);height:100%;background:var(--surface);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.ph-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--cobalt);color:var(--cobalt-ink)}
+.ph-head h2{font-family:var(--f-display);font-weight:400;font-size:19px;margin:0;color:var(--yellow)}
+.x{border:none;background:none;font-size:28px;line-height:1;cursor:pointer;color:inherit;padding:2px 6px}
+.scroll{flex:1;overflow-y:auto;padding:4px 16px 16px}
+.ci{display:grid;grid-template-columns:60px 1fr;gap:12px;padding:12px 0;border-bottom:1px dashed var(--rule)}
+.ci .mini{width:60px;height:60px;border-radius:10px;padding:4px;background:color-mix(in srgb,var(--c) var(--tile-mix),var(--surface))}
+.ci .nm{min-height:0;-webkit-line-clamp:2;font-size:13px}
+.ci .row{padding-top:4px}
+.rm{border:none;background:none;color:var(--soft);text-decoration:underline;font-size:12px;cursor:pointer;padding:0;justify-self:start}
+.sum{display:flex;justify-content:space-between;align-items:center;font-weight:900;padding:16px 0 6px;font-size:16px}
+.sum span:last-child{font-family:var(--f-mono);background:var(--yellow);color:var(--yellow-ink);padding:2px 10px;border-radius:6px}
+.note{font-size:12.5px;color:var(--soft);margin:0 0 12px}
+fieldset{border:none;margin:0;padding:0;display:grid;gap:10px}
+label{display:grid;gap:4px;font-size:13px;font-weight:900}
+label .opt{font-weight:400;color:var(--soft)}
+.f{width:100%;padding:11px 12px;border:2px solid var(--rule);border-radius:10px;background:var(--paper)}
+.f:focus{border-color:var(--cobalt);outline:none}
+.f[aria-invalid="true"]{border-color:var(--pink)}
+.err{color:var(--pink);font-size:12.5px;font-weight:700;min-height:1.2em;margin:4px 0 0}
+.primary{width:100%;padding:14px 16px;border:none;border-radius:999px;background:var(--pink);color:var(--pink-ink);font-weight:900;font-size:16px;cursor:pointer;margin-top:6px;box-shadow:0 4px 0 color-mix(in srgb,var(--pink) 55%,#000)}
+.primary:disabled{opacity:.4;cursor:not-allowed}
+.ghost{width:100%;padding:11px 16px;border:2px solid var(--ink);border-radius:999px;background:var(--surface);font-weight:900;cursor:pointer;text-align:center;text-decoration:none;color:var(--ink);display:block}
+.discord{background:#5865f2;border-color:#5865f2;color:#fff}
+.done{display:grid;gap:12px;padding-top:12px}
+.code{font-family:var(--f-mono);font-size:24px;font-weight:600;letter-spacing:.06em;background:var(--yellow);color:var(--yellow-ink);padding:6px 14px;border-radius:8px;justify-self:start;transform:rotate(-1.5deg)}
+.done ol{margin:0;padding-left:20px;display:grid;gap:6px;font-size:14px}
+.done textarea{width:100%;height:120px;font-family:var(--f-mono);font-size:11.5px;padding:8px;border:2px solid var(--rule);border-radius:10px;background:var(--paper);resize:vertical}
+.parts{display:grid;gap:8px}
+.ok{color:var(--mint);font-weight:900;font-size:13px;min-height:1.2em;margin:0}
+
+.lb{position:fixed;inset:0;z-index:50;background:rgba(15,10,30,.8);display:grid;place-items:center;padding:16px}
+.lb-in{background:var(--surface);border-radius:20px;max-width:min(480px,100%);width:100%;max-height:100%;overflow:auto;display:grid;position:relative}
+.lb-ph{padding:22px;background:color-mix(in srgb,var(--c) var(--tile-mix),var(--surface))}
+.lb-ph .spr{aspect-ratio:1/1;transform:none}
+.lb-body{padding:14px 16px 16px;display:grid;gap:6px}
+.lb-in .x{position:absolute;top:8px;right:8px;background:var(--surface);color:var(--ink);border-radius:999px;width:40px;height:40px}
+.lb-in .nm{-webkit-line-clamp:unset;min-height:0;font-size:16px}
+</style>
+</head>
+<body>
+
+
+<header class="band">
+  <div class="band-in">
+    <div class="eyebrow">B-SIDE LABEL · Binge Scroll Page License</div>
+    <h1>B-SIDE LABEL Sticker Orders</h1>
+    <p class="lede" id="lede">Official Japanese anime stickers, printed to order. Pick your favorites, then send the order to us on Discord. New here? <a href="https://discord.gg/yZVqqrFjE" target="_blank" rel="noopener" style="color:var(--yellow);font-weight:700">Join our Discord ↗</a></p>
+    <div class="steps">
+      <span class="stp"><b>1</b>Add stickers</span>
+      <span class="stp"><b>2</b>Copy your order</span>
+      <span class="stp"><b>3</b>Paste it in a Discord ticket</span>
+    </div>
+    <div class="stamp" aria-hidden="true"><div><span id="stampN">1,589</span><small>STICKERS</small></div></div>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="bar-in">
+    <div class="tools">
+      <input id="q" type="search" placeholder="Search anime or character (e.g. Luffy, Gojo, Pikachu)" aria-label="Search stickers">
+      <select id="sort" aria-label="Sort">
+        <option value="default">Newest</option>
+        <option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+        <option value="sets">Complete sets first</option>
+        <option value="az">Name: A to Z</option>
+      </select>
+    </div>
+    <nav class="rail" id="rail" aria-label="Series"></nav>
+  </div>
+</div>
+
+<main>
+  <div class="status"><span><span class="dot"></span>Stock checked <strong id="checked"></strong>. Every sticker here can be ordered.</span><span>Prices in Japanese yen (JPY)</span></div>
+  <div id="list"></div>
+  <div class="empty" id="empty" hidden>No stickers match that search. Try the anime title or a character's name.</div>
+</main>
+
+<footer class="fine">
+  <div class="fine-in">
+    <p>Stickers are printed to order by B-SIDE LABEL. Orders of 100 or more stickers can take about one month to arrive.</p>
+    <p>Prices include Japanese tax and our buying service fee. Shipping is quoted separately in your ticket.</p>
+    <p>English names are our own translations. Images and product details come from the official B-SIDE LABEL shop, <a href="https://shop.bside-label.com/collections/binge-scroll-page-license" target="_blank" rel="noopener">Binge Scroll Page License collection</a>. This is an unofficial order catalog. All characters and artwork belong to their respective rights holders.</p>
+  </div>
+</footer>
+
+<button id="cartBtn" type="button" hidden>Cart <span class="c" id="cartCount">0</span><span class="t" id="cartTotal">¥0</span></button>
+
+<div class="overlay" id="cart" hidden>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+    <div class="ph-head"><h2 id="cartTitle">Your order</h2><button class="x" type="button" data-close aria-label="Close">×</button></div>
+    <div class="scroll">
+      <div id="cartItems"></div>
+      <div class="sum"><span id="sumLabel">Total</span><span id="sumPrice">¥0</span></div>
+      <p class="note">Shipping is not included. We confirm the final amount in your Discord ticket before you pay.</p>
+      <form id="orderForm" novalidate>
+        <fieldset>
+          <label for="discord">Discord username<input class="f" id="discord" autocomplete="username" placeholder="e.g. sakura_123" required></label>
+          <label for="country">Country / region<input class="f" id="country" autocomplete="country-name" placeholder="e.g. United States" required></label>
+          <label for="memo">Note <span class="opt">(optional)</span><textarea class="f" id="memo" rows="2" placeholder="Anything we should know"></textarea></label>
+        </fieldset>
+        <p class="err" id="formErr" role="alert"></p>
+        <button class="primary" id="submitBtn" type="submit">Copy my order</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="sent" hidden>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="sentTitle">
+    <div class="ph-head"><h2 id="sentTitle">Almost done!</h2><button class="x" type="button" data-close aria-label="Close">×</button></div>
+    <div class="scroll"><div class="done" id="doneBox"></div></div>
+  </div>
+</div>
+
+<div class="lb" id="lb" hidden></div>
+
+<script src="data.js"></script>
+<script>
+const DISCORD_TICKET_URL = "https://discord.com/channels/1494195048559018084/1494226693865472020";
+// The channel link above only opens for existing members; first-time customers join via the invite.
+const DISCORD_INVITE_URL = "https://discord.gg/yZVqqrFjE";
+const ORDER_ENDPOINT = "";   // optional: Google Apps Script web app URL (orders → spreadsheet)
+
+const SHOP="https://shop.bside-label.com/products/";
+const PER=16, COLS=4, TOTAL=SPRITE_COUNT, LASTROWS=Math.ceil((TOTAL%PER||PER)/COLS);
+const items=ITEMS.map((r,i)=>({id:r[0],jp:r[1],p:r[2],h:r[3],av:!!r[5],s:r[6],n:r[7],nw:!!r[8],si:i<SPRITE_COUNT?i:-1,o:r[9]!=null?r[9]:i,set:/Complete Set/.test(r[7])})).sort((a,b)=>a.o-b.o);
+const byId=new Map(items.map(it=>[it.id,it]));
+const yen=n=>"¥"+n.toLocaleString("en-US");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $=id=>document.getElementById(id);
+
+/* sprite: sheet img/sNNN.webp, 4 columns */
+function sprite(it){
+  const sh=Math.floor(it.si/PER),k=it.si%PER,last=sh===Math.floor((TOTAL-1)/PER);
+  const rows=last?LASTROWS:4,c=k%COLS,r=Math.floor(k/COLS);
+  return {url:`img/s${String(sh).padStart(3,"0")}.webp`,size:`400% ${rows*100}%`,pos:`${c/(COLS-1)*100}% ${rows>1?r/(rows-1)*100:0}%`};
+}
+function sprHTML(it,lazy){if(it.si<0)return `<div class="spr nophoto"><span>${esc(it.s)}</span><small>Photo on the official shop</small></div>`;const s=sprite(it);return `<div class="spr" role="img" aria-label="${esc(it.n)}"${lazy?` data-bg="${s.url}"`:""} style="background-size:${s.size};background-position:${s.pos}${lazy?"":`;background-image:url(${s.url})`}"></div>`}
+const io=("IntersectionObserver" in window)?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target;el.style.backgroundImage=`url(${el.dataset.bg})`;io.unobserve(el)}}),{rootMargin:"400px 0px"}):null;
+function hydrate(root){root.querySelectorAll(".spr[data-bg]").forEach(el=>{if(io)io.observe(el);else el.style.backgroundImage=`url(${el.dataset.bg})`})}
+
+/* series colors */
+const PALETTE=["var(--cobalt)","var(--pink)","var(--mint)","var(--orange)","var(--violet)","var(--sky)"];
+const seriesCount=new Map();items.forEach(it=>seriesCount.set(it.s,(seriesCount.get(it.s)||0)+1));
+const seriesSorted=[...seriesCount.keys()].sort((a,b)=>seriesCount.get(b)-seriesCount.get(a));
+const color=new Map(seriesSorted.map((s,i)=>[s,PALETTE[i%PALETTE.length]]));
+const cvar=s=>`--c:${color.get(s)}`;
+
+$("stampN").textContent=items.length.toLocaleString("en-US");
+$("checked").textContent=new Date(CHECKED+"T00:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
+
+let cart=new Map();
+try{JSON.parse(localStorage.getItem("bsl-cart")||"[]").forEach(([id,q])=>{if(byId.has(id)&&q>0)cart.set(id,q)})}catch(e){}
+const saveCart=()=>{try{localStorage.setItem("bsl-cart",JSON.stringify([...cart]))}catch(e){}};
+
+let active="All",flatLimit=60;
+function perSeries(){const w=document.querySelector("main").clientWidth-32;const cols=w<=420?2:Math.max(2,Math.floor((w+16)/(164+16)));return cols*2}
+function rail(){
+  const r=$("rail");r.innerHTML="";
+  const mk=(name,count,c)=>{const b=document.createElement("button");b.type="button";b.className="chip";if(c)b.style.setProperty("--c",c);b.setAttribute("aria-pressed",String(active===name));b.innerHTML=`<i></i>${esc(name)}<span class="n">${count}</span>`;b.onclick=()=>{active=name;flatLimit=60;rail();render();scrollTop()};return b};
+  r.appendChild(mk("All",items.length,"var(--ink)"));
+  seriesSorted.forEach(s=>r.appendChild(mk(s,seriesCount.get(s),color.get(s))));
+  const on=r.querySelector('[aria-pressed="true"]');if(on)on.scrollIntoView({block:"nearest",inline:"nearest"});
+}
+function scrollTop(){const b=document.querySelector(".bar");window.scrollTo({top:b.offsetTop-0})}
+function filtered(){
+  const q=$("q").value.trim().normalize("NFC").toLowerCase();
+  let l=items.filter(it=>(active==="All"||it.s===active)&&(!q||(it.n+" "+it.jp+" "+it.s).toLowerCase().includes(q)));
+  const s=$("sort").value;
+  if(s==="price-asc")l.sort((a,b)=>a.p-b.p||a.o-b.o);
+  else if(s==="price-desc")l.sort((a,b)=>b.p-a.p||a.o-b.o);
+  else if(s==="sets")l.sort((a,b)=>(b.set-a.set)||a.o-b.o);
+  else if(s==="az")l.sort((a,b)=>a.n.localeCompare(b.n));
+  return l;
+}
+function ctrl(it){
+  const q=cart.get(it.id)||0;
+  if(!it.av)return `<button class="add" disabled>Sold out</button>`;
+  if(!q)return `<button class="add" type="button" data-add="${it.id}">Add +</button>`;
+  return `<span class="qty"><button type="button" data-dec="${it.id}" aria-label="One less">−</button><span>${q}</span><button type="button" data-inc="${it.id}" aria-label="One more">+</button></span>`;
+}
+function card(it){
+  return `<article class="card" style="${cvar(it.s)}">
+    ${it.av?(it.nw?'<span class="badge">NEW</span>':''):'<span class="badge out">SOLD OUT</span>'}
+    <button class="ph" type="button" data-zoom="${it.id}" aria-label="Enlarge ${esc(it.n)}">${sprHTML(it,true)}</button>
+    <div class="cb"><div class="ser">${esc(it.s)}</div><div class="nm">${esc(it.n)}</div><div class="jp" lang="ja">${esc(it.jp)}</div>
+    <div class="row"><span class="price">${yen(it.p)}</span><span data-ctrl="${it.id}">${ctrl(it)}</span></div></div></article>`;
+}
+function render(){
+  const l=filtered(),q=$("q").value.trim(),list=$("list");
+  $("empty").hidden=l.length>0;
+  if(active==="All"&&!q){
+    const g=new Map();l.forEach(it=>{if(!g.has(it.s))g.set(it.s,[]);g.get(it.s).push(it)});
+    const order=[...g.keys()];
+    list.innerHTML=order.map(s=>{const arr=g.get(s);return `<section class="series" style="${cvar(s)}"><div class="sh"><h2 class="tape">${esc(s)}</h2><span class="cnt">${arr.length} stickers</span>${arr.length>perSeries()?`<button class="all" type="button" data-series="${esc(s)}">See all ${arr.length} →</button>`:""}</div><div class="grid">${arr.slice(0,perSeries()).map(card).join("")}</div></section>`}).join("");
+  }else{
+    const head=active==="All"?`${l.length} results`:esc(active);
+    list.innerHTML=`<section class="series" style="${active==="All"?"--c:var(--ink)":cvar(active)}"><div class="sh"><h2 class="tape">${head}</h2><span class="cnt">${active==="All"?"":l.length+" stickers"}</span></div><div class="grid">${l.slice(0,flatLimit).map(card).join("")}</div>${l.length>flatLimit?`<button class="more" type="button" id="moreBtn">Show more (${l.length-flatLimit} left)</button>`:""}</section>`;
+    const m=$("moreBtn");if(m)m.onclick=()=>{flatLimit+=60;render()};
+  }
+  hydrate(list);
+}
+function setQty(id,q){
+  if(q<=0)cart.delete(id);else cart.set(id,Math.min(q,99));
+  saveCart();
+  document.querySelectorAll(`[data-ctrl="${id}"]`).forEach(el=>el.innerHTML=ctrl(byId.get(id)));
+  cartUI();
+}
+function totals(){let n=0,t=0;cart.forEach((q,id)=>{n+=q;t+=q*byId.get(id).p});return{n,t}}
+function cartUI(){
+  const {n,t}=totals();
+  $("cartBtn").hidden=n===0;$("cartCount").textContent=n;$("cartTotal").textContent=yen(t);
+  $("sumLabel").textContent=`Total · ${n} sticker${n===1?"":"s"}`;$("sumPrice").textContent=yen(t);
+  const box=$("cartItems");
+  if(!n){box.innerHTML=`<p class="empty">Your cart is empty.</p>`;$("submitBtn").disabled=true;return}
+  $("submitBtn").disabled=false;
+  box.innerHTML=[...cart].map(([id,q])=>{const it=byId.get(id);return `<div class="ci" style="${cvar(it.s)}"><div class="mini">${sprHTML(it,false)}</div><div style="display:grid;gap:2px;min-width:0"><div class="ser">${esc(it.s)}</div><div class="nm">${esc(it.n)}</div><div class="row"><span class="price">${yen(it.p*q)}</span><span class="qty"><button type="button" data-dec="${id}" aria-label="One less">−</button><span>${q}</span><button type="button" data-inc="${id}" aria-label="One more">+</button></span></div><button class="rm" type="button" data-rm="${id}">Remove</button></div></div>`}).join("");
+}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button");if(!t)return;
+  const d=t.dataset;
+  if(d.add)setQty(d.add,1);
+  else if(d.inc)setQty(d.inc,(cart.get(d.inc)||0)+1);
+  else if(d.dec)setQty(d.dec,(cart.get(d.dec)||0)-1);
+  else if(d.rm)setQty(d.rm,0);
+  else if(d.series){active=d.series;flatLimit=999;rail();render();scrollTop()}
+  else if(d.zoom)zoom(d.zoom);
+  else if("close" in d)t.closest(".overlay,.lb").hidden=true;
+});
+document.querySelectorAll(".overlay").forEach(o=>o.addEventListener("click",e=>{if(e.target===o)o.hidden=true}));
+$("lb").addEventListener("click",e=>{if(e.target===$("lb"))$("lb").hidden=true});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".overlay,.lb").forEach(o=>o.hidden=true)});
+$("cartBtn").onclick=()=>{cartUI();$("cart").hidden=false};
+let qt;$("q").addEventListener("input",()=>{clearTimeout(qt);qt=setTimeout(()=>{flatLimit=60;render()},150)});
+$("sort").onchange=render;
+
+function zoom(id){
+  const it=byId.get(id),lb=$("lb");
+  lb.innerHTML=`<div class="lb-in" role="dialog" aria-modal="true" aria-label="${esc(it.n)}" style="${cvar(it.s)}"><button class="x" type="button" data-close aria-label="Close">×</button><div class="lb-ph">${sprHTML(it,false)}</div><div class="lb-body"><div class="ser">${esc(it.s)}</div><div class="nm">${esc(it.n)}</div><div class="jp" lang="ja" style="white-space:normal">${esc(it.jp)}</div><div class="row"><span class="price">${yen(it.p)}</span><span data-ctrl="${it.id}">${ctrl(it)}</span></div><a href="${SHOP+it.h}" target="_blank" rel="noopener">View on the official B-SIDE LABEL shop ↗</a></div></div>`;
+  lb.hidden=false;
+}
+
+/* order */
+function orderCode(){const a="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";let s="";for(let i=0;i<4;i++)s+=a[Math.floor(Math.random()*a.length)];const d=new Date();return `BSL-${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}-${s}`}
+function shortName(it){const b=`${it.s}: ${it.n}`;return b.length>60?b.slice(0,59)+"…":b}
+function buildLines(code,f){
+  const {n,t}=totals();
+  const L=[`B-SIDE LABEL order ${code}`,`Discord: ${f.discord} | Country: ${f.country}`];
+  if(f.memo)L.push(`Note: ${f.memo.replace(/\s+/g," ").slice(0,200)}`);
+  L.push("---");
+  [...cart].forEach(([id,q])=>{const it=byId.get(id);L.push(`${q}x ${shortName(it)} [${it.jp.length>24?it.jp.slice(0,23)+"…":it.jp}] ${yen(it.p*q)}`)});
+  L.push("---",`Total: ${n} stickers, ${yen(t)} (shipping not included)`);
+  return L;
+}
+function splitParts(L,max){const P=[];let cur="";for(const l of L){if(cur&&cur.length+l.length+1>max){P.push(cur);cur=""}cur+=(cur?"\n":"")+l}if(cur)P.push(cur);return P}
+async function copy(text,msg,ta){
+  try{await navigator.clipboard.writeText(text);msg.textContent="Copied! Now paste it in your Discord ticket.";return true}
+  catch(e){if(ta){ta.hidden=false;ta.focus();ta.select()}msg.textContent="Copy was blocked here. Select the text below and copy it yourself.";return false}
+}
+$("orderForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const f={discord:$("discord").value.trim().replace(/^@/,""),country:$("country").value.trim(),memo:$("memo").value.trim()};
+  $("discord").setAttribute("aria-invalid",String(!f.discord));$("country").setAttribute("aria-invalid",String(!f.country));
+  if(!f.discord||!f.country){$("formErr").textContent="Please enter your Discord username and country so we can find your ticket.";return}
+  $("formErr").textContent="";
+  try{localStorage.setItem("bsl-who",JSON.stringify({d:f.discord,c:f.country}))}catch(e){}
+  const code=orderCode(),L=buildLines(code,f),full=L.join("\n");
+  const parts=full.length>3900?splitParts(L,1900):[full];
+  $("doneBox").innerHTML=`<p style="margin:0;font-weight:700">Your order number</p><div class="code">${code}</div>
+    <p class="ok" id="copyMsg"></p>
+    <ol>
+      <li>New to our Discord? <a href="${esc(DISCORD_INVITE_URL)}" target="_blank" rel="noopener">Join the server first</a>.</li>
+      <li>Open <strong>#create-ticket</strong> in our Discord (button below).</li>
+      <li>Tap <strong>Create ticket</strong>. Already have an open ticket with us? Use that one instead.</li>
+      <li>Paste your order in the ticket${parts.length>1?`. Your order is long, so paste it in <strong>${parts.length} parts</strong>, one message each`:""}.</li>
+    </ol>
+    <a class="ghost" href="${esc(DISCORD_INVITE_URL)}" target="_blank" rel="noopener" style="border-color:#5865f2;color:#5865f2">Join our Discord ↗</a>
+    <a class="ghost discord" href="${esc(DISCORD_TICKET_URL)}" target="_blank" rel="noopener">Open #create-ticket in Discord ↗</a>
+    <div class="parts">${parts.length>1?parts.map((p,i)=>`<button class="ghost" type="button" data-part="${i}">Copy part ${i+1} of ${parts.length}</button>`).join(""):`<button class="ghost" type="button" data-part="0">Copy again</button>`}</div>
+    <textarea id="orderText" readonly aria-label="Order text" hidden></textarea>
+    <p class="note">Keep this page open until you have pasted your order. Your cart stays saved on this device.</p>`;
+  $("cart").hidden=true;$("sent").hidden=false;
+  const ta=$("orderText");ta.value=parts[0];
+  $("doneBox").querySelectorAll("[data-part]").forEach(b=>b.onclick=()=>{const i=+b.dataset.part;ta.value=parts[i];copy(parts[i],$("copyMsg"),ta).then(ok=>{if(ok&&parts.length>1)$("copyMsg").textContent=`Part ${i+1} copied. Paste it, then copy the next part.`})});
+  const ok=await copy(parts[0],$("copyMsg"),ta);
+  if(ok&&parts.length>1)$("copyMsg").textContent="Part 1 copied. Paste it, then come back for part 2.";
+  if(ORDER_ENDPOINT){try{fetch(ORDER_ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain"},body:JSON.stringify({code,...f,items:[...cart].map(([id,q])=>({id,q,name:byId.get(id).n,price:byId.get(id).p})),total:totals().t})})}catch(e){}}
+});
+try{const w=JSON.parse(localStorage.getItem("bsl-who")||"null");if(w){$("discord").value=w.d||"";$("country").value=w.c||""}}catch(e){}
+rail();render();cartUI();
+</script>
+
+
+</body>
+</html>
